@@ -1,3 +1,8 @@
+### 5.1.1
+
+Fork created to revert back Giraffe.ViewEngine.StrongName introduced in 4.1.0 as it breaks compatability with existing Giraffe projects
+
+
 ### 5.1.0 - September 04 2024
 
 ### 5.0.0 - May 27 2024
@@ -45,7 +50,7 @@ Major release with lots of bug fixes, improvements, and upstream feature additio
 
 ### 4.2.0 - August 02 2023
 
-This release makes Plotly.NET compatible with [LINQPad](https://www.linqpad.net/). 
+This release makes Plotly.NET compatible with [LINQPad](https://www.linqpad.net/).
 
 Read more about this on the respective [pull request](https://github.com/plotly/Plotly.NET/pull/404).
 
@@ -126,12 +131,12 @@ This could be considered as a breaking change, but it's not because the Giraffe.
     - v2.12:
         - [Implement various options to position and style minor ticks and grid lines on cartesian axis types](https://github.com/plotly/Plotly.NET/commit/7ed80ebba4a8d14e387f471f6d489afbf15b6916)
         - [add griddash axis property to cartesian, polar, smith, ternary and geo subplots and add griddash and minorgriddash to carpet trace](https://github.com/plotly/Plotly.NET/commit/6711ecfffd172ce7bbf7ee43b50d1a57f3c19013)
-    - v2.10: 
+    - v2.10:
         - [Add support to use version 3 of MathJax and add typesetMath attribute to config](https://github.com/plotly/Plotly.NET/commit/d18345786d69c5b1864948991042a9b06f0121fc)
         - [Add fill pattern to scatter and derived traces / chart APIs](https://github.com/plotly/Plotly.NET/commit/99fcf65fa0515f1a5c65cace2015545ba2980da3)
-    - v2.9: 
+    - v2.9:
         - [add ticklabelstep attribute to axes and colorbars](https://github.com/plotly/Plotly.NET/commit/5101dc57a5f43732e642536aedba1289e76d419a)
-    - v2.8: 
+    - v2.8:
         - [add horizontal color bar options](https://github.com/plotly/Plotly.NET/commit/f51c61134e1f195edee91a5fcc922d43eb3360e5)
 
 ### 3.0.1 - August 26 2022
@@ -146,8 +151,8 @@ Minor fixes for Object abstractions:
 
 ### 3.0.0 - June 15 2022
 
-This release adopts strong assembly naming. 
-This might cause backwards incompatibility and therefore results in an early major version increase. 
+This release adopts strong assembly naming.
+This might cause backwards incompatibility and therefore results in an early major version increase.
 For more insights why we do this, check out the conversation on this [issue](https://github.com/plotly/Plotly.NET/issues/175)
 
 Other additions:

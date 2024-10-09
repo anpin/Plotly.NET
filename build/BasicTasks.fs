@@ -4,21 +4,19 @@ open BlackFox.Fake
 open Fake.IO
 open Fake.DotNet
 open Fake.IO.Globbing.Operators
-
+open System
 open ProjectInfo
-
 /// Buildtask for setting a prerelease tag (also sets the mutable isPrerelease to true, and the PackagePrereleaseTag of all project infos accordingly.)
 let setPrereleaseTag =
     BuildTask.create "SetPrereleaseTag" [] {
-        printfn "Please enter pre-release package suffix"
-        let suffix = System.Console.ReadLine()
+        let suffix  = Helpers.getSuffix()
         prereleaseSuffix <- suffix
         isPrerelease <- true
         projects
         |> List.iter (fun p ->
             p.PackagePrereleaseTag <- (sprintf "%s-%s" p.PackageVersionTag suffix)
         )
-        // 
+        //
         prereleaseTag <- (sprintf "%s-%s" CoreProject.PackageVersionTag suffix)
     }
 
@@ -30,20 +28,20 @@ let clean =
 
 /// builds the solution file (dotnet build solution.sln)
 let buildSolution =
-    BuildTask.create "BuildSolution" [ clean ] { 
-        solutionFile 
+    BuildTask.create "BuildSolution" [ clean ] {
+        solutionFile
         |> DotNet.build (fun p ->
             let msBuildParams =
-                {p.MSBuildParams with 
+                {p.MSBuildParams with
                     Properties = ([
                         "warnon", "3390"
                     ])
                     DisableInternalBinLog = true
                 }
             {
-                p with 
+                p with
                     MSBuildParams = msBuildParams
-                    
+
             }
             |> DotNet.Options.withCustomParams (Some "-tl")
         )
@@ -63,7 +61,7 @@ let build = BuildTask.create "Build" [clean] {
         proj
         |> DotNet.build (fun p ->
             let msBuildParams =
-                {p.MSBuildParams with 
+                {p.MSBuildParams with
                     Properties = ([
                         "AssemblyVersion", pInfo.AssemblyVersion
                         "InformationalVersion", pInfo.AssemblyInformationalVersion
@@ -72,7 +70,7 @@ let build = BuildTask.create "Build" [clean] {
                     DisableInternalBinLog = true
                 }
             {
-                p with 
+                p with
                     MSBuildParams = msBuildParams
             }
             |> DotNet.Options.withCustomParams (Some "--no-dependencies -tl")

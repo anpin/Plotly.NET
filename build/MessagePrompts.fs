@@ -10,17 +10,20 @@ let prompt (msg: string) =
     |> Option.map (fun s -> s.Replace("\"", "\\\""))
 
 let rec promptYesNo msg =
-    match prompt (sprintf "%s [Yn]: " msg) with
-    | Some "Y"
-    | Some "y" -> true
-    | Some "N"
-    | Some "n" -> false
-    | _ ->
-        System.Console.WriteLine("Sorry, invalid answer")
-        promptYesNo msg
+    if Helpers.nonInteractive() then
+        true
+    else
+        match prompt (sprintf "%s [Yn]: " msg) with
+        | Some "Y"
+        | Some "y" -> true
+        | Some "N"
+        | Some "n" -> false
+        | _ ->
+            System.Console.WriteLine("Sorry, invalid answer")
+            promptYesNo msg
 
 let releaseMsg =
-    """This will stage all uncommitted changes, push them to the origin and bump the release version to the latest number in the RELEASE_NOTES.md file. 
+    """This will stage all uncommitted changes, push them to the origin and bump the release version to the latest number in the RELEASE_NOTES.md file.
     Do you want to continue?"""
 
 let releaseDocsMsg =

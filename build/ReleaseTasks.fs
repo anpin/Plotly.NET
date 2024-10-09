@@ -61,7 +61,7 @@ let publishNuget =
 
         if promptYesNo "OK?" then
             let source =
-                "https://api.nuget.org/v3/index.json"
+                Environment.environVarOrDefault "NUGET_SOURCE" "https://api.nuget.org/v3/index.json"
 
             let apikey =
                 Environment.environVar "NUGET_KEY"
@@ -102,7 +102,7 @@ let publishNugetPrerelease =
 
         if promptYesNo "OK?" then
             let source =
-                "https://api.nuget.org/v3/index.json"
+                Environment.environVarOrDefault "NUGET_SOURCE" "https://api.nuget.org/v3/index.json"
 
             let apikey =
                 Environment.environVar "NUGET_KEY"

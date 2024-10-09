@@ -12,7 +12,7 @@ index: 1
 (*** condition: prepare ***)
 #r "nuget: Newtonsoft.JSON, 13.0.1"
 #r "nuget: DynamicObj, 2.0.0"
-#r "nuget: Giraffe.ViewEngine.StrongName, 2.0.0-alpha1"
+#r "nuget: Giraffe.ViewEngine, 2.0.0-alpha-1"
 #r "../data/Deedle.dll"
 #r "../../src/Plotly.NET/bin/Release/netstandard2.0/Plotly.NET.dll"
 
