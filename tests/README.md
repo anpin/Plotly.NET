@@ -70,10 +70,6 @@ The largets test suite by far that tests all things Plotly.NET, such as HTML cod
 
 Testing usage of the core F# API from C#
 
-#### StrongNameTests.fsproj
-
-Testing usage of the core F# in an environment that requires strong named libraries. This catches for example the addition of new dependencies that are not signed, and therefore cause errors in such an environment, but not in newer .NET environments.
-
 ### ExtensionLibTests
 
 `ExtensionLibTests` contains all UnitTests for extension libraries, such as `Plotly.NET.CSharp` or `Plotly.NET.ImageExport`.

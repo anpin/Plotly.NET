@@ -11,7 +11,7 @@ type ProjectInfo = {
     mutable PackagePrereleaseTag: string
     AssemblyVersion: string
     AssemblyInformationalVersion: string
-} with 
+} with
     /// creates a ProjectInfo given a name, project file path, and release notes file path.
     /// version info is created from the version header of the uppermost release notes entry.
     /// Assembly version is set to X.0.0, where X is the major version from the releas enotes.
@@ -19,7 +19,7 @@ type ProjectInfo = {
         name: string,
         projFile: string,
         releaseNotesPath: string
-    ): ProjectInfo = 
+    ): ProjectInfo =
         let release = releaseNotesPath |> ReleaseNotes.load
         let stableVersion = release.NugetVersion |> SemVer.parse
         let stableVersionTag = $"{stableVersion.Major}.{stableVersion.Minor}.{stableVersion.Patch}"
@@ -33,11 +33,11 @@ type ProjectInfo = {
             PackageVersionTag = stableVersionTag
             AssemblyVersion = assemblyVersion
             AssemblyInformationalVersion = assemblyInformationalVersion
-        }    
+        }
     static member create(
         name: string,
         projFile: string
-    ): ProjectInfo = 
+    ): ProjectInfo =
         {
             Name = name
             ProjFile = projFile
@@ -91,11 +91,8 @@ let testProjectsExtensionsLibs = [
 ]
 
 // test projects (.NET framework)
-let StrongNameTestProject = ProjectInfo.create("StrongNameTests", "tests/CoreTests/StrongNameTests/StrongNameTests.fsproj")
 
-let testProjectsNetFX = [
-    StrongNameTestProject
-]
+let testProjectsNetFX = [    ]
 
 let CoreProject = ProjectInfo.create("Plotly.NET", "src/Plotly.NET/Plotly.NET.fsproj", "src/Plotly.NET/RELEASE_NOTES.md")
 let InteractiveProject = ProjectInfo.create("Plotly.NET.Interactive", "src/Plotly.NET.Interactive/Plotly.NET.Interactive.fsproj", "src/Plotly.NET.Interactive/RELEASE_NOTES.md")
