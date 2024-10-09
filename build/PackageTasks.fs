@@ -44,7 +44,7 @@ let pack = BuildTask.create "Pack" [ clean; build; runTestsAll ] {
                                     @ p.MSBuildParams.Properties)
                             DisableInternalBinLog = true
                         }
-                        
+
 
                 { p with
                     MSBuildParams = msBuildParams
@@ -68,8 +68,7 @@ let packPrerelease =
         ] {
         projects
         |> List.iter (fun pInfo ->
-            printfn $"Please enter pre-release package suffix for {pInfo.Name}"
-            let prereleaseSuffix = System.Console.ReadLine()
+            let prereleaseSuffix = Helpers.getSuffix()
             pInfo.PackagePrereleaseTag <- sprintf "%s-%s" pInfo.PackageVersionTag prereleaseSuffix
             if promptYesNo $"creating prerelease package for {pInfo.Name}{System.Environment.NewLine}\tpackage version: {pInfo.PackagePrereleaseTag}{System.Environment.NewLine}\tassembly version: {pInfo.AssemblyVersion}{System.Environment.NewLine}\tassembly informational version: {pInfo.AssemblyInformationalVersion}{System.Environment.NewLine} OK?" then
                 pInfo.ProjFile
@@ -88,7 +87,7 @@ let packPrerelease =
                                         ])
                                 DisableInternalBinLog = true
                             }
-                        | _ -> 
+                        | _ ->
                             { p.MSBuildParams with
                                 Properties =
                                     ([

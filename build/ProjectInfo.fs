@@ -86,7 +86,7 @@ let CSharpTestProject = ProjectInfo.create("CSharpTests", "tests/ExtensionLibsTe
 
 ///
 let testProjectsExtensionsLibs = [
-    ImageExportTestProject
+    if Helpers.isChromeInstalled() then ImageExportTestProject
     CSharpTestProject
 ]
 
